@@ -589,7 +589,7 @@ typedef NS_ENUM(NSInteger, PowerMode) {
         return @{@"status": @(124), @"output": @"", @"error": error, @"safeToFallback": @NO};
     }
 
-    BOOL hadStragglers = ![self processGroupHasExited:processID];
+    BOOL hadStragglers = ![self waitForProcessGroupToExit:processID timeout:0.5];
     BOOL groupTerminated = !hadStragglers || [self terminateProcessGroup:processID];
     if (trackAuthorization && groupTerminated) [self trackAuthorizationProcessGroup:processID add:NO];
     dispatch_group_wait(readers, dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC));
