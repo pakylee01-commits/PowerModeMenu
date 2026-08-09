@@ -5,12 +5,19 @@ PROJECT_DIR="${0:A:h}"
 APP_DIR="$PROJECT_DIR/build/PowerModeMenu.app"
 CONTENTS_DIR="$APP_DIR/Contents"
 
+if [[ "$APP_DIR" != "$PROJECT_DIR/build/PowerModeMenu.app" || -L "$PROJECT_DIR/build" || -L "$APP_DIR" ]]; then
+    print -u2 "Refusing to clean an unexpected or symlinked build path: $APP_DIR"
+    exit 1
+fi
+
 rm -rf "$APP_DIR"
 mkdir -p "$CONTENTS_DIR/MacOS"
 
 xcrun clang \
     -fobjc-arc \
     -O2 \
+    -arch arm64 \
+    -arch x86_64 \
     -mmacosx-version-min=13.0 \
     -framework Cocoa \
     "$PROJECT_DIR/Source/PowerModeMenu.m" \

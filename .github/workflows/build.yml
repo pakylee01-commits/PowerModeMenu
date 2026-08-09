@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  macos:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate scripts and property lists
+        run: |
+          zsh -n build.sh
+          plutil -lint Info.plist local.gekyume.powermodemenu.plist
+      - name: Build universal app
+        run: ./build.sh
+      - name: Run command lifecycle tests
+        run: |
+          mkdir -p work
+          xcrun clang -fobjc-arc -framework Cocoa Tests/CommandRunnerTests.m -o work/CommandRunnerTests
+          work/CommandRunnerTests
+      - name: Verify architecture and signature
+        run: |
+          lipo -archs build/PowerModeMenu.app/Contents/MacOS/PowerModeMenu | grep -q 'x86_64 arm64\|arm64 x86_64'
+          codesign --verify --deep --strict build/PowerModeMenu.app
