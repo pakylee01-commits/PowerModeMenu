@@ -15,6 +15,9 @@ mkdir -p "$CONTENTS_DIR/MacOS"
 
 xcrun clang \
     -fobjc-arc \
+    -Wall \
+    -Wextra \
+    -Werror \
     -O2 \
     -arch arm64 \
     -arch x86_64 \

@@ -59,11 +59,6 @@ typedef NS_ENUM(NSInteger, PowerMode) {
 }
 
 - (void)configureMenu {
-    NSUserDefaults *defaults = NSUserDefaults.standardUserDefaults;
-    [defaults setBool:YES forKey:@"NSStatusItem VisibleCC MainStatusItem"];
-    [defaults setDouble:400.0 forKey:@"NSStatusItem Preferred Position MainStatusItem"];
-    [defaults synchronize];
-
     self.statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:22.0];
     self.statusItem.autosaveName = @"MainStatusItem";
     self.statusItem.behavior = 0;
@@ -136,6 +131,15 @@ typedef NS_ENUM(NSInteger, PowerMode) {
 
 - (void)quitApplication:(id)sender {
     if (self.terminating) return;
+
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.alertStyle = NSAlertStyleWarning;
+    alert.messageText = @"退出前确认电源模式";
+    alert.informativeText = @"退出会停止 PowerModeMenu 管理的 caffeinate，但不会恢复 pmset、睡眠或锁屏设置。如果当前是“在家常开”，请先切换到“出门睡眠”。";
+    [alert addButtonWithTitle:@"取消"];
+    [alert addButtonWithTitle:@"仍然退出"];
+    if ([alert runModal] != NSAlertSecondButtonReturn) return;
+
     self.terminating = YES;
     self.currentItem.title = @"正在安全退出...";
     self.homeItem.enabled = NO;

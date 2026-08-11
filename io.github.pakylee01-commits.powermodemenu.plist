@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>Label</key>
-    <string>local.gekyume.powermodemenu</string>
+    <string>io.github.pakylee01-commits.powermodemenu</string>
     <key>ProgramArguments</key>
     <array>
         <string>/Applications/PowerModeMenu.app/Contents/MacOS/PowerModeMenu</string>

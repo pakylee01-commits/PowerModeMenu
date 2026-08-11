@@ -1,5 +1,8 @@
 name: Build
 
+permissions:
+  contents: read
+
 on:
   push:
   pull_request:
@@ -8,18 +11,22 @@ jobs:
   macos:
     runs-on: macos-15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - name: Validate scripts and property lists
         run: |
           zsh -n build.sh
-          plutil -lint Info.plist local.gekyume.powermodemenu.plist
+          plutil -lint Info.plist io.github.pakylee01-commits.powermodemenu.plist
       - name: Build universal app
         run: ./build.sh
+      - name: Run Clang static analyzer
+        run: xcrun clang --analyze -fobjc-arc -Wall -Wextra Source/PowerModeMenu.m -o /dev/null
       - name: Run command lifecycle tests
         run: |
           mkdir -p work
           xcrun clang -fobjc-arc -framework Cocoa Tests/CommandRunnerTests.m -o work/CommandRunnerTests
           work/CommandRunnerTests
+          xcrun clang -fobjc-arc -framework Cocoa Tests/PolicyTests.m -o work/PolicyTests
+          work/PolicyTests
       - name: Verify architecture and signature
         run: |
           lipo -archs build/PowerModeMenu.app/Contents/MacOS/PowerModeMenu | grep -q 'x86_64 arm64\|arm64 x86_64'

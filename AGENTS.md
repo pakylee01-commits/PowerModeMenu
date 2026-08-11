@@ -14,10 +14,13 @@
 
 ```bash
 zsh -n build.sh
-plutil -lint Info.plist local.gekyume.powermodemenu.plist
+plutil -lint Info.plist io.github.pakylee01-commits.powermodemenu.plist
 ./build.sh
+xcrun clang --analyze -fobjc-arc -Wall -Wextra Source/PowerModeMenu.m -o /dev/null
 xcrun clang -fobjc-arc -framework Cocoa Tests/CommandRunnerTests.m -o work/CommandRunnerTests
 work/CommandRunnerTests
+xcrun clang -fobjc-arc -framework Cocoa Tests/PolicyTests.m -o work/PolicyTests
+work/PolicyTests
 ```
 
 构建验证不得自动复制应用到 `/Applications`、加载 LaunchAgent 或修改 PAM。
