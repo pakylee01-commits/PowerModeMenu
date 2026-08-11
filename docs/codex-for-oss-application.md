@@ -13,11 +13,13 @@ This file is a maintainer draft, not proof that an application has been submitte
 - Role: Primary maintainer
 - Default branch: `main`
 - Application-preparation branch: `codex-for-oss-application`
-- Stars: recheck from the public repository
-- Forks: recheck from the public repository
-- Contributors: recheck from the public repository
-- Latest successful CI run: recheck from GitHub Actions
-- Latest release: recheck from GitHub Releases
+- Initial public snapshot on 2026-08-11: 0 stars, 0 forks, 1 contributor, 0 issues
+- Default-branch CI: `macos` passed on run `31473085960`
+- Application-branch CI: `macos` passed on run `31473106460`
+- Latest release: source-only `v1.2.0`, published 2026-08-11
+- Security controls: Secret Scanning, Push Protection, private vulnerability reporting, and protected `main`
+
+These are time-specific facts. Recheck Stars, Forks, Contributors, Issues, CI, and the latest release immediately before submission instead of copying this snapshot as current forever.
 
 Do not submit private power snapshots, credentials, private contact data, or unverifiable download numbers.
 
