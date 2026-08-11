@@ -2,6 +2,10 @@
 
 All notable changes are documented here. The project follows source releases while Developer ID signing and notarization are unavailable.
 
+## Unreleased
+
+- Updated the pinned checkout Action to v5 to use the supported Node.js runtime.
+
 ## 1.2.0 - 2026-08-11
 
 - Removed machine-specific menu-bar position forcing.
