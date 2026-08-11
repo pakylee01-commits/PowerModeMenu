@@ -14,7 +14,7 @@ This file is a maintainer draft, not proof that an application has been submitte
 - Default branch: `main`
 - Application-preparation branch: `codex-for-oss-application`
 - Initial public snapshot on 2026-08-11: 0 stars, 0 forks, 1 contributor, 0 issues
-- Default-branch CI: `macos` passed on run `31473085960`
+- Default-branch CI: `macos` passed on run `31473405590` after the public roadmap was added
 - Application-branch CI: `macos` passed on run `31473106460`
 - Latest release: source-only `v1.2.0`, published 2026-08-11
 - Security controls: Secret Scanning, Push Protection, private vulnerability reporting, and protected `main`
