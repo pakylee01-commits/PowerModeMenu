@@ -161,6 +161,8 @@ sudo rm -rf /Applications/PowerModeMenu.app
 
 提交 issue 或 PR 前请阅读 [CONTRIBUTING.md](CONTRIBUTING.md)、[SECURITY.md](SECURITY.md) 和 [THREAT_MODEL.md](THREAT_MODEL.md)。涉及 `sudo`、`pmset`、PAM、LaunchAgent、Shell 或进程组信号的变更必须同时提供安全影响说明和无特权回归测试。
 
+已完成与后续优化计划记录在 [ROADMAP.md](ROADMAP.md)，不会以新增模式或任意命令执行来换取表面功能数量。
+
 ## License
 
 [MIT](LICENSE)
